@@ -4,9 +4,16 @@
   "description": "Change where a module dependency is resolved/imported from.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test"
   },
-  "keywords": [],
+  "keywords": [
+    "esbuild",
+    "esbuild resolve",
+    "resolve",
+    "swap dependencies",
+    "import",
+    "dependencies"
+  ],
   "author": {
     "email": "me@markwylde.com",
     "name": "Mark Wylde",
@@ -20,5 +27,10 @@
   "bugs": {
     "url": "https://github.com/markwylde/esbuild-plugin-resolve/issues"
   },
-  "homepage": "https://github.com/markwylde/esbuild-plugin-resolve#readme"
+  "homepage": "https://github.com/markwylde/esbuild-plugin-resolve#readme",
+  "devDependencies": {
+    "basictap": "^2.0.1",
+    "esbuild": "^0.12.15",
+    "routemeup": "^2.0.2"
+  }
 }
