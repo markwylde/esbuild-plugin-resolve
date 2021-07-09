@@ -1,0 +1,24 @@
+{
+  "name": "esbuild-plugin-resolve",
+  "version": "1.0.0",
+  "description": "Change where a module dependency is resolved/imported from.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": {
+    "email": "me@markwylde.com",
+    "name": "Mark Wylde",
+    "url": "https://github.com/markwylde"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markwylde/esbuild-plugin-resolve.git"
+  },
+  "bugs": {
+    "url": "https://github.com/markwylde/esbuild-plugin-resolve/issues"
+  },
+  "homepage": "https://github.com/markwylde/esbuild-plugin-resolve#readme"
+}
