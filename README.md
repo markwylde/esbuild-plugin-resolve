@@ -14,7 +14,7 @@ import resolve from 'esbuild-plugin-resolve';
 esbuild.build({
   entryPoints: ['./src/index.js'],
   bundle: true,
-  outfile: tsOutfile,
+  outfile: './lib/index.js',
   plugins: [resolve({
     test: 'test-two/lib/example'
   })]
