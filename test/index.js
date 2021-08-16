@@ -3,6 +3,7 @@ const test = require('basictap');
 const esbuild = require('esbuild');
 
 const resolve = require('../');
+const path = require('path');
 
 const clean = string => string.replace(/[ ,\n]/g, '')
 
@@ -14,7 +15,8 @@ test('simple resolution', async t => {
     bundle: true,
     outfile: './test/simple/index.built.js',
     plugins: [resolve({
-      test: '../shared/importable'
+      test: '../shared/importable',
+      func: '../shared/func',
     })]
   })
 
@@ -27,8 +29,14 @@ test('simple resolution', async t => {
         return "got here ok";
       }
     
+      // test/shared/func/fun.js
+      function fun_default() {
+        return "fun is ok";
+      }
+    
       // test/simple/index.js
       console.log(importable_default);
+      console.log(fun_default);
     })();  
   `));
 })
@@ -41,8 +49,12 @@ test('external resolution', async t => {
     bundle: true,
     outfile: './test/simple/index.built.js',
     plugins: [resolve({
-      test: 'routemeup'
-    })]
+      test: 'routemeup',
+    })],
+    external: [
+      'func',
+      'func/fun'
+    ]
   })
 
   const result = await fs.promises.readFile('./test/simple/index.built.js', 'utf8');
