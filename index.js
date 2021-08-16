@@ -1,5 +1,5 @@
 function intercept (build, moduleName, moduleTarget) {
-  const filter = new RegExp('^' + moduleName + '$');
+  const filter = new RegExp('^' + moduleName + '(?:\\/.*)?$');
 
   build.onResolve({ filter }, async (args) => {
     if (args.resolveDir === '') {
@@ -11,16 +11,16 @@ function intercept (build, moduleName, moduleTarget) {
       namespace: 'esbuild-resolve',
       pluginData: {
         resolveDir: args.resolveDir,
+        moduleName,
       },
     };
   });
 
   build.onLoad({ filter, namespace: 'esbuild-resolve' }, async (args) => {
     let importerCode = `
-      export * from '${moduleTarget}';
-      export { default } from '${moduleTarget}';
+      export * from '${args.path.replace(args.pluginData.moduleName, moduleTarget)}';
+      export { default } from '${args.path.replace(args.pluginData.moduleName, moduleTarget)}';
     `;
-
     return { contents: importerCode, resolveDir: args.pluginData.resolveDir };
   });
 }
