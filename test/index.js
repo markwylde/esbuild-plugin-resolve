@@ -3,7 +3,6 @@ const test = require('basictap');
 const esbuild = require('esbuild');
 
 const resolve = require('../');
-const path = require('path');
 
 const clean = string => string.replace(/[ ,\n]/g, '')
 
