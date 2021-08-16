@@ -4,7 +4,7 @@ const esbuild = require('esbuild');
 
 const resolve = require('../');
 
-const clean = string => string.replace(/[ ,\n]/g, '')
+const clean = string => string.replace(/[ ,\n]/g, '');
 
 test('simple resolution', async t => {
   t.plan(1);
@@ -15,9 +15,9 @@ test('simple resolution', async t => {
     outfile: './test/simple/index.built.js',
     plugins: [resolve({
       test: '../shared/importable',
-      func: '../shared/func',
+      func: '../shared/func'
     })]
-  })
+  });
 
   const result = await fs.promises.readFile('./test/simple/index.built.js', 'utf8');
 
@@ -38,7 +38,7 @@ test('simple resolution', async t => {
       console.log(fun_default);
     })();  
   `));
-})
+});
 
 test('external resolution', async t => {
   t.plan(1);
@@ -48,15 +48,15 @@ test('external resolution', async t => {
     bundle: true,
     outfile: './test/simple/index.built.js',
     plugins: [resolve({
-      test: 'routemeup',
+      test: 'routemeup'
     })],
     external: [
       'func',
       'func/fun'
     ]
-  })
+  });
 
   const result = await fs.promises.readFile('./test/simple/index.built.js', 'utf8');
 
   t.ok(result.includes('stringToRegexp'));
-})
+});

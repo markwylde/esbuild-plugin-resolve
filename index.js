@@ -11,13 +11,13 @@ function intercept (build, moduleName, moduleTarget) {
       namespace: 'esbuild-resolve',
       pluginData: {
         resolveDir: args.resolveDir,
-        moduleName,
-      },
+        moduleName
+      }
     };
   });
 
   build.onLoad({ filter, namespace: 'esbuild-resolve' }, async (args) => {
-    let importerCode = `
+    const importerCode = `
       export * from '${args.path.replace(args.pluginData.moduleName, moduleTarget)}';
       export { default } from '${args.path.replace(args.pluginData.moduleName, moduleTarget)}';
     `;
@@ -26,12 +26,12 @@ function intercept (build, moduleName, moduleTarget) {
 }
 
 const EsbuildPluginResolve = (options) => ({
-    name: 'esbuild-resolve',
-    setup: (build) => {
-      for (let moduleName of Object.keys(options)) {
-        intercept(build, moduleName, options[moduleName])
-      }
-    },
-  });
-  
+  name: 'esbuild-resolve',
+  setup: (build) => {
+    for (const moduleName of Object.keys(options)) {
+      intercept(build, moduleName, options[moduleName]);
+    }
+  }
+});
+
 module.exports = EsbuildPluginResolve;
