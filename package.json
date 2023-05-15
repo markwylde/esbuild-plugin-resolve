@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-resolve",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Change where a module dependency is resolved/imported from.",
   "main": "index.js",
   "scripts": {
