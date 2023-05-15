@@ -1,27 +1,18 @@
 function intercept (build, moduleName, moduleTarget) {
-  const filter = new RegExp('^' + moduleName + '(?:\\/.*)?$');
+  const filter = new RegExp('^' + moduleName.replace(/[\^$\\.*+?()[\]{}|]/g, '\\$&') + '(?:\\/.*)?$');
 
-  build.onResolve({ filter }, async (args) => {
+  build.onResolve({ filter, namespace: 'file' }, async (args) => {
+    const external = Boolean(build.initialOptions.external?.includes(args.path));
+
+    if (external) {
+      return { path: args.path, external };
+    }
+
     if (args.resolveDir === '') {
       return;
     }
 
-    return {
-      path: args.path,
-      namespace: 'esbuild-resolve',
-      pluginData: {
-        resolveDir: args.resolveDir,
-        moduleName
-      }
-    };
-  });
-
-  build.onLoad({ filter, namespace: 'esbuild-resolve' }, async (args) => {
-    const importerCode = `
-      export * from '${args.path.replace(args.pluginData.moduleName, moduleTarget)}';
-      export { default } from '${args.path.replace(args.pluginData.moduleName, moduleTarget)}';
-    `;
-    return { contents: importerCode, resolveDir: args.pluginData.resolveDir };
+    return build.resolve(args.path.replace(moduleName, moduleTarget), { kind: args.kind, resolveDir: args.resolveDir });
   });
 }
 
