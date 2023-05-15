@@ -1,8 +1,8 @@
-const fs = require('fs');
-const test = require('basictap');
-const esbuild = require('esbuild');
+import fs from 'fs';
+import test from 'basictap';
+import esbuild from 'esbuild';
 
-const resolve = require('../');
+import resolve from '../index.js';
 
 const clean = string => string.replace(/[ ,\n]/g, '');
 
@@ -27,16 +27,16 @@ test('simple resolution', async t => {
       function importable_default() {
         return "got here ok";
       }
-    
+
       // test/shared/func/fun.js
       function fun_default() {
         return "fun is ok";
       }
-    
+
       // test/simple/index.js
       console.log(importable_default);
       console.log(fun_default);
-    })();  
+    })();
   `));
 });
 

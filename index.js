@@ -25,4 +25,4 @@ const EsbuildPluginResolve = (options) => ({
   }
 });
 
-module.exports = EsbuildPluginResolve;
+export default EsbuildPluginResolve;

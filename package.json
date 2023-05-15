@@ -1,6 +1,7 @@
 {
   "name": "esbuild-plugin-resolve",
   "version": "1.1.0",
+  "type": "module",
   "description": "Change where a module dependency is resolved/imported from.",
   "main": "index.js",
   "scripts": {
@@ -29,8 +30,8 @@
   },
   "homepage": "https://github.com/markwylde/esbuild-plugin-resolve#readme",
   "devDependencies": {
-    "basictap": "^2.0.1",
+    "basictap": "^4.3.3",
     "esbuild": "^0.17.19",
-    "routemeup": "^2.0.2"
+    "routemeup": "^4.0.0"
   }
 }
