@@ -31,7 +31,7 @@
   "homepage": "https://github.com/markwylde/esbuild-plugin-resolve#readme",
   "devDependencies": {
     "basictap": "^4.3.3",
-    "esbuild": "^0.17.19",
+    "esbuild": "^0.25.0",
     "routemeup": "^4.0.0"
   }
 }
